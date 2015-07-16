@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE Profile [
+  <!ENTITY HqCount1 "0">
+  <!ENTITY HqCount2 "0">
+  <!ENTITY HqCount3 "0">
+]>
+
+<Profile>
+  <Name>Craft Cobalt Ore</Name>
+  <Order>
+    <While condition="True">
+      <Synthesize recipeId="153" hqMats="&HqCount1;,&HqCount2;,&HqCount3;" />
+      <CraftAction actionId="286" statusText="Comfort Zone" />
+      <CraftAction actionId="253" statusText="Inner Quiet" />
+      <CraftAction actionId="285" statusText="Waste Not II" />
+      <CraftAction actionId="281" statusText="Steady Hand II" />
+      <CraftAction actionId="100016" statusText="Basic Touch" />
+      <CraftAction actionId="100016" statusText="Basic Touch" />
+      <CraftAction actionId="100016" statusText="Basic Touch" />
+      <CraftAction actionId="100016" statusText="Basic Touch" />
+      <CraftAction actionId="100016" statusText="Basic Touch" />
+      <CraftAction actionId="245" statusText="Steady Hand" />
+      <CraftAction actionId="261" statusText="Great Strides" />
+      <CraftAction actionId="284" statusText="Innovation" />
+      <CraftAction actionId="100009" statusText="Byregot's Blessing" />
+      <CraftAction actionId="100069" statusText="Careful Synthesis II" />
+    </While>
+  </Order>
+</Profile>

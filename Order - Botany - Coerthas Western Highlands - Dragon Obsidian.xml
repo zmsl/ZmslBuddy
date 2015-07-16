@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Gather Dragon Obsidian in Coerthas Western Highlands</Name>
+  <Order>
+    <While Condition="True">
+      
+      <If Condition="not IsOnMap(397)">
+        <TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+      </If>
+
+      <Gather>
+        <GatherObject>Mineral Deposit</GatherObject>
+        <HotSpots>
+          <Hotspot Radius="80" X="245.4487" Y="164.8235" Z="302.8673" />
+          <Hotspot Radius="80" X="346.4137" Y="160.4119" Z="165.7341" />
+          <Hotspot Radius="80" X="420.1673" Y="167.3875" Z="367.4505" />
+        </HotSpots>
+        <ItemNames>
+          <ItemName>Dragon Obsidian</ItemName>
+          <ItemName>Timeworn Peisteskin Map</ItemName>
+        </ItemNames>
+        <GatheringSkillOrder>
+          <GatheringSkill SpellName="Sharp Vision" TimesToCast="1" />
+        </GatheringSkillOrder>
+      </Gather>
+
+    </While>
+  </Order>
+</Profile>

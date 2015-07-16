@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Gather Cobalt Ore in Northern Thanalan</Name>
+  <Order>
+    <While condition="True">
+
+      <If condition="not IsOnMap(147)">
+        <TeleportTo name="Ceruleum Processing Plant" aetheryteId="22" />
+      </If>
+
+      <Gather>
+        <GatherObject>Mineral Deposit</GatherObject>
+        <HotSpots>
+          <!-- Group 1 -->
+          <HotSpot radius="40" x="34.56836" y="32.36576" z="136.3825" />
+          
+          <!-- Group 2 -->
+          <HotSpot radius="40" x="99.79644" y="20.46665" z="114.6487" />
+          
+          <!-- Group 3 -->
+          <HotSpot radius="40" x="120.1177" y="26.9839" z="137.6438" />
+          
+          <!-- Group 4 -->
+          <HotSpot radius="40" x="111.3427" y="23.03951" z="190.8507" />
+          
+        </HotSpots>
+        <ItemNames>
+          <ItemName>Cobalt Ore</ItemName>
+        </ItemNames>
+        <GatheringSkillOrder>
+          <GatheringSkill SpellName="Sharp Vision" TimesToCast="1"/>
+        </GatheringSkillOrder>
+      </Gather>
+      
+    </While>
+  </Order>
+</Profile>
