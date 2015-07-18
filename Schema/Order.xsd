@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Profile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Name" type="xs:string"/>
+        <xs:element minOccurs="0" name="KillRadius" type="xs:float"/>
+        <xs:element minOccurs="0" name="BehaviorDirectory" type="xs:string"/>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element minOccurs="0" name="GrindAreas">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="GrindArea"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="CodeChunks">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="CodeChunk"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+        <xs:element minOccurs="1" name="Order" type="CompositeProfileBehavior"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GrindArea">
+    <xs:complexType>
+      <xs:all minOccurs="1">
+        <xs:element minOccurs="0" name="MinLevel" type="xs:int"/>
+        <xs:element minOccurs="0" name="MaxLevel" type="xs:int"/>
+        <xs:element minOccurs="1" name="Hotspots" type="HotSpotCollection"/>
+        <xs:element name="TargetMobs">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" ref="TargetMob"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="Blackspots">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" ref="BlackSpot"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="AvoidMobs">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" ref="AvoidMob"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+      <xs:attribute use="required" name="name" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CodeChunk">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute use="required" name="name" type="xs:string"/>
+          <xs:attribute name="codeType" type="CodeType"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HotSpot" type="Position"/>
+  <xs:element name="Vendor">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Position">
+          <xs:attribute name="mapName"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlackSpot" type="Position"/>
+  <xs:element name="TargetMob">
+    <xs:complexType>
+      <xs:attribute name="weight" type="xs:float"/>
+      <xs:attribute name="id" type="xs:int"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AvoidMob">
+    <xs:complexType>
+      <xs:attribute name="entry" type="xs:int"/>
+      <xs:attribute name="name" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WaitWhile" type="ConditionalProfileBehavior"/>
+  <xs:element name="If" type="ConditionalProfileBehavior"/>
+  <xs:element name="While" type="ConditionalProfileBehavior"/>
+  <xs:element name="Gather">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="LoopingProfileBehavior">
+          <xs:all>
+            <xs:element name="GatherObject" type="xs:string"/>
+            <xs:element minOccurs="0" name="ItemNames">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="ItemName" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HotSpots" type="HotSpotCollection"/>
+            <xs:element minOccurs="0" name="BlackSpots">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" ref="BlackSpot"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="Loops" type="xs:int"/>
+            <xs:element minOccurs="0" name="Slot" type="xs:int"/>
+            <xs:element minOccurs="0" ref="GatheringSkillOrder"/>
+          </xs:all>
+          <xs:attribute name="interactDistance" type="xs:float"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GatheringSkillOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="GatheringSkill" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="AllOrNone" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GatheringSkill">
+    <xs:complexType>
+      <xs:attribute name="TimesToCast" type="xs:integer"/>
+      <xs:attribute name="SpellName" use="required" type="xs:string"/>
+      <xs:attribute name="SpellId" type="xs:unsignedInt" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Grind">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="LoopingProfileBehavior">
+          <xs:attribute name="grindRef" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogMessage">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute name="Message" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveTo" type="MovementProfileBehavior"/>
+  <xs:element name="NoCombatMoveTo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MovementProfileBehavior">
+          <xs:attribute name="Wait" type="xs:int"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TeleportTo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute use="optional" name="zoneId" type="xs:int"/>
+          <xs:attribute use="optional" name="aetheryteId" type="xs:int"/>
+          <xs:attribute name="name" type="xs:string"/>
+          <xs:attribute name="force" type="xs:boolean"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WaitTimer">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute use="required" name="waitTime" type="xs:int"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CraftAction">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute use="required" name="actionId" type="xs:unsignedInt"/>
+          <xs:attribute name="minDelay" type="xs:int"/>
+          <xs:attribute name="maxDelay" type="xs:int"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopCrafting" type="ProfileBehavior"/>
+  <xs:element name="EatFood">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="UseItem">
+          <xs:attribute name="MinDuration" type="xs:int"/>
+          <xs:attribute name="HqOnly" type="xs:boolean"/>
+          <xs:attribute name="NqOnly" type="xs:boolean"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectStringOverride">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute name="Index" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TurnIn">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Interaction">
+          <xs:attribute name="RewardSlot" type="xs:int"/>
+          <xs:attribute name="ItemId" type="xs:string"/>
+          <xs:attribute name="ItemIds" type="xs:string"/>
+          <xs:attribute name="RequiresHq" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BotSettings">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute name="AutoEquip" type="xs:int"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuyItem">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="DialogInteraction">
+          <xs:attribute name="itemId" type="xs:unsignedInt"/>
+          <xs:attribute name="itemIds" type="xs:string"/>
+          <xs:attribute name="itemCount" type="xs:string"/>
+          <xs:attribute name="itemCounts" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Dismount" type="ProfileBehavior"/>
+  <xs:element name="EmoteNPC">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="HuntBehavior">
+          <xs:attribute name="Emote" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HandOver">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Interaction">
+          <xs:attribute name="itemId" type="xs:unsignedInt"/>
+          <xs:attribute name="itemIds" type="xs:string"/>
+          <xs:attribute name="requiresHq" type="xs:boolean"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PickUpQuest" type="PickupQuest"/>
+  <xs:element name="RegisterDailies">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute name="questIds" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RunCode">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute name="name" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Scan">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute name="bruseIds" type="xs:string"/>
+          <xs:attribute name="npcId" type="xs:int"/>
+          <xs:attribute name="npcIds" type="xs:string"/>
+          <xs:attribute name="groups" type="xs:string"/>
+          <xs:attribute name="type" type="xs:string"/>
+          <xs:attribute name="radius" type="xs:float"/>
+          <xs:attribute name="questParam" type="xs:string"/>
+          <xs:attribute name="itemId" type="xs:unsignedInt"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SimpleDuty">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:all>
+            <xs:element minOccurs="0" name="HotSpots">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="HotSpot"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="TargetMobs">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element ref="TargetMob"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+          <xs:attribute name="xyz" type="Condition"/>
+          <xs:attribute name="interactDistance" type="xs:float"/>
+          <xs:attribute name="interactNpcId" type="xs:unsignedInt"/>
+          <xs:attribute name="ignoreNpcIds" type="xs:string"/>
+          <xs:attribute name="guardianNPCId" type="xs:unsignedInt"/>
+          <xs:attribute name="leashDistance" type="xs:float"/>
+          <xs:attribute name="searchDistance" type="xs:float"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Synthesize">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute name="minimumCp" type="xs:int"/>
+          <xs:attribute name="recipeId" type="xs:int"/>
+          <xs:attribute name="useCR" type="xs:boolean"/>
+          <xs:attribute name="requiredSkills" type="xs:string"/>
+          <xs:attribute name="hqMats" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TalkTo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute name="npcId" type="xs:int"/>
+          <xs:attribute name="interactDistance" type="xs:float"/>
+          <xs:attribute name="bypassTargetChange" type="xs:boolean"/>
+          <xs:attribute name="xyz" type="Condition"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UseItem" type="UseItem"/>
+  <xs:element name="UseObject" type="ProfileBehavior"/>
+  <xs:element name="UseTransport" type="DialogInteraction"/>
+  <xs:complexType name="HotSpotCollection">
+    <xs:choice maxOccurs="unbounded" minOccurs="1">
+      <xs:element ref="Vendor"/>
+      <xs:choice>
+        <xs:element minOccurs="1" ref="HotSpot"/>
+        <xs:element name="Hotspot" type="Position"/>
+      </xs:choice>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="Position">
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="x" type="xs:float"/>
+    <xs:attribute name="y" type="xs:float"/>
+    <xs:attribute name="z" type="xs:float"/>
+    <xs:attribute use="optional" name="xyz" type="Condition"/>
+    <xs:attribute use="optional" name="radius" type="xs:float"/>
+  </xs:complexType>
+  <xs:complexType name="CompositeProfileBehavior">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element ref="WaitWhile"/>
+      <xs:element ref="If"/>
+      <xs:element ref="While"/>
+      <xs:element ref="Gather"/>
+      <xs:element ref="Grind"/>
+      <xs:element ref="LogMessage"/>
+      <xs:element ref="MoveTo"/>
+      <xs:element ref="NoCombatMoveTo"/>
+      <xs:element ref="TeleportTo"/>
+      <xs:element ref="WaitTimer"/>
+      <xs:element ref="CraftAction"/>
+      <xs:element ref="StopCrafting"/>
+      <xs:element ref="EatFood"/>
+      <xs:element ref="SelectStringOverride"/>
+      <xs:element ref="TurnIn"/>
+      <xs:element ref="BuyItem"/>
+      <xs:element ref="Dismount"/>
+      <xs:element ref="EmoteNPC"/>
+      <xs:element ref="HandOver"/>
+      <xs:element ref="PickUpQuest"/>
+      <xs:element ref="RegisterDailies"/>
+      <xs:element ref="RunCode"/>
+      <xs:element ref="Scan"/>
+      <xs:element ref="SimpleDuty"/>
+      <xs:element ref="Synthesize"/>
+      <xs:element ref="TalkTo"/>
+      <xs:element ref="UseItem"/>
+      <xs:element ref="UseObject"/>
+      <xs:element ref="UseTransport"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ConditionalProfileBehavior">
+    <xs:complexContent>
+      <xs:extension base="CompositeProfileBehavior">
+        <xs:attribute name="condition" type="Condition"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LoopingProfileBehavior">
+    <xs:complexContent>
+      <xs:extension base="ProfileBehavior">
+        <xs:attribute use="optional" name="while" type="Condition"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ProfileBehavior">
+    <xs:attribute name="mission" type="xs:string"/>
+    <xs:attribute name="missionType" type="MissionType"/>
+    <xs:attribute name="inCombat" type="xs:boolean"/>
+    <xs:attribute name="statusText" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="MovementProfileBehavior">
+    <xs:complexContent>
+      <xs:extension base="ProfileBehavior">
+        <xs:attribute use="required" name="name" type="xs:string"/>
+        <xs:attribute use="required" name="xyz" type="Condition"/>
+        <xs:attribute name="distance" type="xs:float"/>
+        <xs:attribute name="useMesh" type="xs:boolean"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="HuntBehavior">
+    <xs:complexContent>
+      <xs:extension base="ProfileBehavior">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Hotspots">
+            <xs:complexType>
+              <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="HotSpot"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute use="required" name="condition" type="Condition"/>
+        <xs:attribute name="xyz" type="Condition"/>
+        <xs:attribute name="waitTime" type="xs:int"/>
+        <xs:attribute name="useHealthPercent" type="xs:float"/>
+        <xs:attribute name="lacksAuraId" type="xs:int"/>
+        <xs:attribute name="blacklistDuration" type="xs:int"/>
+        <xs:attribute name="useDistance" type="xs:float"/>
+        <xs:attribute name="useTimes" type="xs:int"/>
+        <xs:attribute name="searchRadius" type="xs:float"/>
+        <xs:attribute name="radius" type="xs:float"/>
+        <xs:attribute name="npcId" type="xs:int"/>
+        <xs:attribute name="npcIds" type="xs:string"/>
+        <xs:attribute name="ignoreLOS" type="xs:boolean"/>
+        <xs:attribute name="blacklistAfter" type="xs:boolean"/>
+        <xs:attribute name="inCombatOnly" type="xs:boolean"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PickupQuest">
+    <xs:complexContent>
+      <xs:extension base="ProfileBehavior">
+        <xs:attribute name="npcId" type="xs:int"/>
+        <xs:attribute name="xyz" type="Condition"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UseItem">
+    <xs:complexContent>
+      <xs:extension base="ProfileBehavior">
+        <xs:attribute use="required" name="itemId" type="xs:unsignedInt"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Interaction">
+    <xs:complexContent>
+      <xs:extension base="ProfileBehavior">
+        <xs:attribute name="npcId" type="xs:int"/>
+        <xs:attribute name="interactDistance" type="xs:float"/>
+        <xs:attribute name="xyz" type="Condition"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DialogInteraction">
+    <xs:complexContent>
+      <xs:extension base="Interaction">
+        <xs:attribute name="dialogOption" type="xs:int"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Coordinate">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MissionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Normal"/>
+      <xs:enumeration value="Open"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Statement"/>
+      <xs:enumeration value="Definition"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Condition">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+</xs:schema>

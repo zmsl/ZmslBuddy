@@ -42,12 +42,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Order - Blacksmith - Cobalt Ingot.xml" />
-    <Content Include="Order - Botany - Coerthas Western Highlands - Dragon Obsidian.xml" />
-    <Content Include="Order - Mining - Northern Thanalan - Cobalt Ore.xml">
+    <Content Include="Order\Order - Blacksmith - Cobalt Ingot.xml" />
+    <Content Include="Order\Order - Botany - Coerthas Western Highlands - Dragon Obsidian.xml" />
+    <Content Include="Order\Order - Mining - Northern Thanalan - Cobalt Ore.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Schema\Order.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
