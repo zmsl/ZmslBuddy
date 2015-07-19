@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Clio.Utilities;
 using Clio.XmlEngine;
@@ -30,6 +31,18 @@ namespace ZmslBuddy.Profiles.Tags
             }
             set
             {
+                if (!File.Exists(value))
+                {
+                    var withRelative = System.IO.Path.Combine(ff14bot.Helpers.Utils.AssemblyDirectory, value);
+
+                    if (!File.Exists(withRelative))
+                    {
+                        throw new FileNotFoundException("Invalid profile path", value);
+                    }
+
+                    this.path = withRelative;
+                }
+
                 this.path = value;
             }
         }
@@ -44,6 +57,9 @@ namespace ZmslBuddy.Profiles.Tags
 
                 // Return a sequence of all the behaviors plus the done flag
                 return new Sequence(
+                    new Action(
+                        (r) => Log("In")  
+                    ),
                     new PrioritySelector(
                         new Sequence(
                             behaviorTree.ToArray()

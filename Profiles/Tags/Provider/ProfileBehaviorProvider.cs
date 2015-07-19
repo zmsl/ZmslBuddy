@@ -71,7 +71,11 @@ namespace ZmslBuddy.Profiles.Tags.Provider
             // Return null if both behaviors turn up null
             if (ifBehavior == null && whileBehavior == null)
             {
-                return (Composite) typeof (ProfileBehavior)
+                return new PrioritySelector(
+                    new Action(
+                        (r) => { return RunStatus.Failure; }
+                    ),
+                    (Composite) typeof (ProfileBehavior)
                     .GetMethod(
                         "CreateBehavior",
                         System.Reflection.BindingFlags.Instance
@@ -80,7 +84,9 @@ namespace ZmslBuddy.Profiles.Tags.Provider
                     .Invoke(
                         behavior,
                         null
-                    );
+                    ),
+                    new ActionAlwaysSucceed()
+                );
             }
 
             // Get the condition & body to use for our behavior tree
@@ -92,15 +98,27 @@ namespace ZmslBuddy.Profiles.Tags.Provider
                 : ifBehavior.Body;
 
             return ifBehavior == null
-                ? (Composite) new WhileLoop(
-                    (r) => ScriptManager.GetCondition(condition).Invoke(),
-                    this.GetProfileBehaviorCollectionBehavior(body).ToArray()
-                    )
-                : (Composite) new Decorator(
-                    (r) => ScriptManager.GetCondition(condition).Invoke(),
-                    new Sequence(
+                ? new PrioritySelector(
+                    new Action(
+                        (r) => { return RunStatus.Failure; }
+                    ),
+                    new WhileLoop(
+                        (r) => ScriptManager.GetCondition(condition).Invoke(),
                         this.GetProfileBehaviorCollectionBehavior(body).ToArray()
-                    )
+                    ),
+                    new ActionAlwaysSucceed()
+                )
+                : new PrioritySelector(
+                    new Action(
+                        (r) => { return RunStatus.Failure; }
+                    ),
+                    new Decorator(
+                        (r) => ScriptManager.GetCondition(condition).Invoke(),
+                        new Sequence(
+                            this.GetProfileBehaviorCollectionBehavior(body).ToArray()
+                        )
+                    ),
+                    new ActionAlwaysSucceed()
                 );
         }
     }

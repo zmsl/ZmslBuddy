@@ -2,7 +2,8 @@
 <Profile>
   <Name>Test Runner</Name>
   <Order>
-    <RunProfile path="C:/Source/Git/ZmslBuddy/Profiles/Order/Test Counter.xml" />
-    <LogMessage Message="test ok" />
+    <LogMessage Message="Start" />
+    <RunProfile path="Profiles/All_In_One.xml" />
+    <LogMessage Message="End" />
   </Order>
 </Profile>
