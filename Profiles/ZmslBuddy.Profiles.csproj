@@ -84,10 +84,28 @@
     <Compile Include="Tags\WhileCountTag.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Order\Crafts\Skills\Careful Synthesis II.xml" />
+    <Content Include="Order\Crafts\Skills\Byregot%27s Blessing.xml" />
+    <Content Include="Order\Crafts\Skills\Great Strides.xml" />
+    <Content Include="Order\Crafts\Skills\Innovation.xml" />
+    <Content Include="Order\Crafts\Skills\Ingenuity.xml" />
+    <Content Include="Order\Crafts\Skills\Steady Hand.xml" />
+    <Content Include="Order\Crafts\Skills\Hasty Touch.xml" />
+    <Content Include="Order\Crafts\Skills\Manipulation.xml" />
+    <Content Include="Order\Crafts\Skills\Basic Touch.xml" />
+    <Content Include="Order\Crafts\Skills\Standard Touch.xml" />
+    <Content Include="Order\Crafts\Skills\Precise Touch.xml" />
+    <Content Include="Order\Crafts\Skills\Steady Hand II.xml" />
+    <Content Include="Order\Crafts\Skills\Comfort Zone.xml" />
+    <Content Include="Order\Crafts\Skills\Inner Quiet.xml" />
+    <Content Include="Order\Crafts\Skills\Tricks Of The Trade.xml" />
+    <Content Include="Order\Crafts\Utility\Best Touch Count.xml" />
+    <Content Include="Order\Crafts\Utility\Basic Touch Count.xml" />
+    <Content Include="Order\Crafts\Utility\Tricks Count.xml" />
     <Content Include="Order\Test Counter.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Order\Order - Weaver - Ramie Thread.xml" />
+    <Content Include="Order\Crafts\Order - Weaver - Ramie Thread.xml" />
     <Content Include="Order\Order - Blacksmith - Cobalt Ingot.xml" />
     <Content Include="Order\Order - Botany - Coerthas Western Highlands - Dragon Obsidian.xml" />
     <Content Include="Order\Order - Mining - Northern Thanalan - Cobalt Ore.xml">

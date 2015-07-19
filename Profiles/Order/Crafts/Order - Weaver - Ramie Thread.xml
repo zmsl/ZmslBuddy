@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <!DOCTYPE Profile [
-  <!ENTITY Total "999">
+  <!ENTITY Total "226">
   <!ENTITY RecipeId "2757">
   <!ENTITY HqCount1 "0">
   <!ENTITY HqCount2 "0">
@@ -11,6 +11,9 @@
 <Profile>
   <Name>Craft 40 Durability</Name>
   <Order>
+    
+    <ResetCount name="CraftCount" />
+    
     <WhileCount name="CraftCount" value="&Total;" method="LessThan">
       <ResetCount name="TotCount" />
       
@@ -29,7 +32,7 @@
       <RunProfile path="Profiles/ZmslBuddy/Utility/Basic Touch Count.xml" />
       <RunProfile path="Profiles/ZmslBuddy/Utility/Basic Touch Count.xml" />
       <RunProfile path="Profiles/ZmslBuddy/Utility/Basic Touch Count.xml" />
-      <RunProfile path="Profiles/ZmslBuddy/Utility/Basic Touch Count.xml" />
+      <RunProfile path="Profiles/ZmslBuddy/Utility/Best Touch Count.xml" />
 
       <RunProfile path="Profiles/ZmslBuddy/Skills/Steady Hand.xml" />
 
@@ -43,6 +46,8 @@
       <RunProfile path="Profiles/ZmslBuddy/Skills/Careful Synthesis II.xml" />
       
       <IncrementCount name="CraftCount"/>
+      <LogCount name="CraftCount" />
     </WhileCount>
+    
   </Order>
 </Profile>

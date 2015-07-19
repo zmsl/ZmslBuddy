@@ -2,28 +2,32 @@
 <Profile>
   <Name>Use Basic Touch with Count</Name>
   <Order>
-    
-    <ResetCount name="PtRan" />
+
     <ResetCount name="TotRan" />
+    <ResetCount name="PtRan" />
     
     <IfCount name="TotCount" method="GreaterThan" value="0">
 
       <If condition="CraftingManager.Condition == CraftingCondition.Good">
-        <RunProfile path="Profiles/ZmslBuddy/Skills/Precise Touch.xml" />
         <IncrementCount name="PtRan" />
+        <RunProfile path="Profiles/ZmslBuddy/Skills/Precise Touch.xml" />
         <DecrementCount name="TotCount"/>
       </If>
-      <IfCount name="PtRan" method="Equal" value="0">
-        <RunProfile path="Profiles/ZmslBuddy/Skills/Basic Touch.xml"/>
+      <IfCount name="PtRan" method="GreaterThan" value="0" modifier="Not">
+        <RunProfile path="Profiles/ZmslBuddy/Skills/Standard Touch.xml" />
+        <DecrementCount name="TotCount"/>
       </IfCount>
-
+      
       <IncrementCount name="TotRan" />
 
     </IfCount>
     <IfCount name="TotRan" method="Equal" value="0">
+      
       <RunProfile path="Profiles/ZmslBuddy/Skills/Basic Touch.xml"/>
+      
     </IfCount>
-
+    
+    <ResetCount name="TotRan" />
     <ResetCount name="PtRan" />
     
   </Order>
