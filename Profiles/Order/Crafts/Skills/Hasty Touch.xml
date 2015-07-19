@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Cast Hasty Touch</Name>
+  <Order>
+      <CraftAction actionId="100108" />
+  </Order>
+</Profile>

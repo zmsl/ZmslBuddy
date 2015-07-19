@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Cast Byregot's Blessing</Name>
+  <Order>
+      <CraftAction actionId="100009" />
+  </Order>
+</Profile>

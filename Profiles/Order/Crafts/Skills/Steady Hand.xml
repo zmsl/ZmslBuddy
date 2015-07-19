@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Cast Steady Hand</Name>
+  <Order>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Carpenter">
+      <CraftAction actionId="244"/>
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Blacksmith">
+      <CraftAction actionId="245"/>
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Armorer">
+      <CraftAction actionId="246" />
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Goldsmith">
+      <CraftAction actionId="247" />
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Leatherworker">
+      <CraftAction actionId="249" />
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Weaver">
+      <CraftAction actionId="248"/>
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Alchemist">
+      <CraftAction actionId="250" />
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Culinarian">
+      <CraftAction actionId="251" />
+    </If>
+  </Order>
+</Profile>

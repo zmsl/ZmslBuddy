@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Cast Steady Hand II</Name>
+  <Order>
+      <CraftAction actionId="281" />
+  </Order>
+</Profile>

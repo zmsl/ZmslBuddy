@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Cast Comfort Zone</Name>
+  <Order>
+      <CraftAction actionId="286" />
+  </Order>
+</Profile>

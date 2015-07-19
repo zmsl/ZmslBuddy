@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Cast Precise Touch</Name>
+  <Order>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Carpenter">
+      <CraftAction actionId="100128"/>
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Blacksmith">
+      <CraftAction actionId="100129"/>
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Armorer">
+      <CraftAction actionId="100130" />
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Goldsmith">
+      <CraftAction actionId="100131" />
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Leatherworker">
+      <CraftAction actionId="100132" />
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Weaver">
+      <CraftAction actionId="100133"/>
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Alchemist">
+      <CraftAction actionId="100134" />
+    </If>
+    <If condition="Core.Me.CurrentJob == ClassJobType.Culinarian">
+      <CraftAction actionId="100135" />
+    </If>
+  </Order>
+</Profile>

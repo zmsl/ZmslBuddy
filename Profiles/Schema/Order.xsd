@@ -367,6 +367,22 @@
   <xs:element name="UseItem" type="UseItem"/>
   <xs:element name="UseObject" type="ProfileBehavior"/>
   <xs:element name="UseTransport" type="DialogInteraction"/>
+  <xs:element name="DecrementCount" type="BaseCacheTag"/>
+  <xs:element name="IncrementCount" type="BaseCacheTag"/>
+  <xs:element name="LogCount" type="BaseCacheTag"/>
+  <xs:element name="ResetCount" type="BaseCacheTag"/>
+  <xs:element name="IfCount" type="ConditionalCountTag"/>
+  <xs:element name="WhileCount" type="ConditionalCountTag"/>
+  <xs:element name="RunProfile">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ProfileBehavior">
+          <xs:attribute name="path" type="xs:string"/>
+          <xs:attribute name="condition" type="Condition"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
   <xs:complexType name="HotSpotCollection">
     <xs:choice maxOccurs="unbounded" minOccurs="1">
       <xs:element ref="Vendor"/>
@@ -415,6 +431,13 @@
       <xs:element ref="UseItem"/>
       <xs:element ref="UseObject"/>
       <xs:element ref="UseTransport"/>
+      <xs:element ref="DecrementCount"/>
+      <xs:element ref="IncrementCount"/>
+      <xs:element ref="LogCount"/>
+      <xs:element ref="ResetCount"/>
+      <xs:element ref="IfCount"/>
+      <xs:element ref="WhileCount"/>
+      <xs:element ref="RunProfile"/>
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="ConditionalProfileBehavior">
@@ -508,6 +531,23 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="BaseCacheTag">
+    <xs:complexContent>
+      <xs:extension base="ProfileBehavior">
+        <xs:attribute name="name" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ConditionalCountTag">
+    <xs:complexContent>
+      <xs:extension base="CompositeProfileBehavior">
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="value" type="xs:int"/>
+        <xs:attribute name="method" type="ComparisonMethod"/>
+        <xs:attribute name="modifier" type="ComparisonModifier"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:simpleType name="Coordinate">
     <xs:restriction base="xs:string">
       <xs:pattern value="(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)"/>
@@ -527,5 +567,20 @@
   </xs:simpleType>
   <xs:simpleType name="Condition">
     <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="ComparisonMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LessThan"/>
+      <xs:enumeration value="GreaterThan"/>
+      <xs:enumeration value="Equal"/>
+      <xs:enumeration value="LessThanOrEqual"/>
+      <xs:enumeration value="GreaterThanOrEqual"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ComparisonModifier">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Is"/>
+      <xs:enumeration value="Not"/>
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>
