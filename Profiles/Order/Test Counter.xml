@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Test Message</Name>
+  <Order>
+    <IncrementCount Name="test" />
+    <LogCount Name="test" />
+    
+  </Order>
+</Profile>
