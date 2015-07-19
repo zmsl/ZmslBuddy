@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tags\Extension\TypeExtensions.cs" />
+    <Compile Include="Tags\Provider\IProfileBehaviorProvider.cs" />
+    <Compile Include="Tags\Provider\ProfileBehaviorProvider.cs" />
+    <Compile Include="Tags\RunProfileTag.cs" />
     <Compile Include="Tags\ProfileStateCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tags\BaseCacheTag.cs" />
@@ -63,6 +67,7 @@
     <Content Include="Order\Order - Mining - Northern Thanalan - Cobalt Ore.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Order\Test Runner.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Schema\Order.xsd">

@@ -53,6 +53,14 @@ namespace ZmslBuddy.Profiles.Tags
         }
 
         /// <summary>
+        /// Resets the done flag on the tag
+        /// </summary>
+        protected override void OnResetCachedDone()
+        {
+            this.isDone = false;
+        }
+
+        /// <summary>
         /// Creates and returns the behavior tree used after the base behavior executes
         /// </summary>
         /// <returns></returns>

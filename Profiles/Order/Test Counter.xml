@@ -2,8 +2,9 @@
 <Profile>
   <Name>Test Message</Name>
   <Order>
-    <IncrementCount Name="test" />
-    <LogCount Name="test" />
-    
+    <LogMessage Message="test test test"/>
+    <If condition="True">
+      <LogMessage Message="if is ok"/>
+    </If>
   </Order>
 </Profile>

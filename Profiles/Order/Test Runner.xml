@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Profile>
+  <Name>Test Runner</Name>
+  <Order>
+    <RunProfile path="C:/Source/Git/ZmslBuddy/Profiles/Order/Test Counter.xml" />
+    <LogMessage Message="test ok" />
+  </Order>
+</Profile>
