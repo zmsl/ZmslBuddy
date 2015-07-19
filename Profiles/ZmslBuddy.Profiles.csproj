@@ -63,12 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tags\Behavior\ActionRunOnce.cs" />
+    <Compile Include="Tags\Enum\ComparisonMethodEnum.cs" />
+    <Compile Include="Tags\Enum\ComparisonModifierEnum.cs" />
     <Compile Include="Tags\Extension\NeoProfileExtension.cs" />
     <Compile Include="Tags\Extension\TypeExtensions.cs" />
+    <Compile Include="Tags\IfCountTag.cs" />
     <Compile Include="Tags\RunProfileTag.cs" />
     <Compile Include="Tags\Provider\IProfileBehaviorProvider.cs" />
     <Compile Include="Tags\Provider\ProfileBehaviorProvider.cs" />
-    <Compile Include="Tags\NonRunProfileTag.cs" />
     <Compile Include="Tags\ProfileStateCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tags\BaseCacheTag.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Tags\Provider\ProfileCountProvider.cs" />
     <Compile Include="Tags\Provider\ICountProvider.cs" />
     <Compile Include="Tags\ResetCountTag.cs" />
+    <Compile Include="Tags\WhileCountTag.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Order\Test Counter.xml">

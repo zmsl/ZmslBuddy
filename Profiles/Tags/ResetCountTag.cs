@@ -9,6 +9,14 @@ namespace ZmslBuddy.Profiles.Tags
         /// <summary>
         /// Instantiates a new instance of the <see cref="ResetCountTag"/> class
         /// </summary>
+        public ResetCountTag() 
+            : base(new ProfileCountProvider())
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the <see cref="ResetCountTag"/> class
+        /// </summary>
         /// <remarks>Class is instantiated with the <see cref="ProfileCountProvider"/> class because no DI sucks</remarks>
         public ResetCountTag(ICountProvider countProvider) : base(countProvider)
         {

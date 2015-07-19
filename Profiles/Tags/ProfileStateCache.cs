@@ -15,9 +15,9 @@ namespace ZmslBuddy.Profiles.Tags
         {
             get { return ProfileStateCache<T>._Instance.Value; }
         }
+        #endregion
 
         private readonly Lazy<Dictionary<string, T>> cache = new Lazy<Dictionary<string, T>>(() => new Dictionary<string, T>(), true);
-        #endregion
 
         /// <summary>
         /// Get or set a value in the cache

@@ -2,9 +2,18 @@
 <Profile>
   <Name>Test Message</Name>
   <Order>
+    <ResetCount name="test" />
+    <IncrementCount Name="test" />
+    <IfCount name="test" value="1" method="Equal">
+      <LogMessage Message="count worked" />
+    </IfCount>
     <LogMessage Message="test test test"/>
     <If condition="True">
       <LogMessage Message="if is ok"/>
     </If>
+    <WhileCount name="test" value="10" method="Equal" modifier="Not">
+      <IncrementCount name="test" />
+      <LogCount name="test" />
+    </WhileCount>
   </Order>
 </Profile>
