@@ -3,7 +3,7 @@
   <Name>Test Runner</Name>
   <Order>
     <LogMessage Message="Start" />
-    <RunProfile path="Profiles/All_In_One.xml" />
+    <RunProfile path="Profiles/Test Counter.xml" />
     <LogMessage Message="End" />
   </Order>
 </Profile>

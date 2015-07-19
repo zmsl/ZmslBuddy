@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Clio.Utilities;
+using ff14bot;
 using ff14bot.Behavior;
 using ff14bot.NeoProfiles;
 using TreeSharp;
+using ZmslBuddy.Profiles.Tags.Behavior;
 using ZmslBuddy.Profiles.Tags.Extension;
 using Action = TreeSharp.Action;
 
@@ -67,59 +69,49 @@ namespace ZmslBuddy.Profiles.Tags.Provider
         {
             var ifBehavior = behavior as IfTag;
             var whileBehavior = behavior as WhileTag;
+            Composite bodyBehavior;
             
-            // Return null if both behaviors turn up null
-            if (ifBehavior == null && whileBehavior == null)
+            if (ifBehavior != null)
             {
-                return new PrioritySelector(
-                    new Action(
-                        (r) => { return RunStatus.Failure; }
-                    ),
-                    (Composite) typeof (ProfileBehavior)
-                    .GetMethod(
-                        "CreateBehavior",
-                        System.Reflection.BindingFlags.Instance
-                        | System.Reflection.BindingFlags.NonPublic
-                    )
-                    .Invoke(
-                        behavior,
-                        null
-                    ),
-                    new ActionAlwaysSucceed()
+                bodyBehavior = new Decorator(
+                    (r) => ScriptManager.GetCondition(ifBehavior.Condition).Invoke(),
+                    new Sequence(
+                        this.GetProfileBehaviorCollectionBehavior(ifBehavior.Body).ToArray()
+                        )
+                    );
+            }
+            else if (whileBehavior != null)
+            {
+                bodyBehavior = new WhileLoop(
+                    (r) => ScriptManager.GetCondition(whileBehavior.Condition).Invoke(),
+                    this.GetProfileBehaviorCollectionBehavior(whileBehavior.Body).ToArray()
                 );
             }
+            else
+            {
+                bodyBehavior = (Composite) behavior.InvokePrivateMethod<Composite>("CreateBehavior", null);
+            }
 
-            // Get the condition & body to use for our behavior tree
-            var condition = ifBehavior == null
-                ? whileBehavior.Condition
-                : ifBehavior.Condition;
-            var body = ifBehavior == null
-                ? whileBehavior.Body
-                : ifBehavior.Body;
+            return new PrioritySelector(
+                new ActionRunOnce(
+                    (r) =>
+                    {
+                        try
+                        {
+                            behavior.InvokePrivateMethod("UpdateBehavior");
+                            behavior.Start();
+                        }
+                        catch
+                        {
+                            // TODO: Get a better understanding of how RB starts the profile behaviors during behavior execution
+                        }
 
-            return ifBehavior == null
-                ? new PrioritySelector(
-                    new Action(
-                        (r) => { return RunStatus.Failure; }
-                    ),
-                    new WhileLoop(
-                        (r) => ScriptManager.GetCondition(condition).Invoke(),
-                        this.GetProfileBehaviorCollectionBehavior(body).ToArray()
-                    ),
-                    new ActionAlwaysSucceed()
-                )
-                : new PrioritySelector(
-                    new Action(
-                        (r) => { return RunStatus.Failure; }
-                    ),
-                    new Decorator(
-                        (r) => ScriptManager.GetCondition(condition).Invoke(),
-                        new Sequence(
-                            this.GetProfileBehaviorCollectionBehavior(body).ToArray()
-                        )
-                    ),
-                    new ActionAlwaysSucceed()
-                );
+                        return RunStatus.Failure;
+                    }
+                ),
+                bodyBehavior,
+                new ActionAlwaysSucceed()
+            );
         }
     }
 }

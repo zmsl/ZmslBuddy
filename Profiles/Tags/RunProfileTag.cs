@@ -1,29 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Clio.Utilities;
+﻿using System.IO;
 using Clio.XmlEngine;
-using ff14bot.Behavior;
 using ff14bot.NeoProfiles;
-using TreeSharp;
 using ZmslBuddy.Profiles.Tags.Extension;
-using ZmslBuddy.Profiles.Tags.Provider;
-using Action = TreeSharp.Action;
 
 namespace ZmslBuddy.Profiles.Tags
 {
     [XmlElement("RunProfile")]
-    public class RunProfileTag : ProfileBehavior
+    public class RunProfileTag : IfTag
     {
-        // Dependencies because no DI = sadness
-        private readonly IProfileBehaviorProvider behaviorProvider = new ProfileBehaviorProvider();
-
         private string path;
         private bool isDone;
-            
+
+        /// <summary>
+        /// Instantiates a new instance of the <see cref="RunProfileTag"/> class
+        /// </summary>
+        public RunProfileTag()
+        {
+            this.Condition = "True"; // Default condition to true so that user does not need to specify
+        }
+
+        /// <summary>
+        /// Reloads the body elements in this tag
+        /// </summary>
+        private void ReloadBody()
+        {
+            this.Body = NeoProfile.Load(this.path).GetOrderBody();
+        }
+
+        /// <summary>
+        /// Resets the is done flag
+        /// </summary>
+        protected override void OnResetCachedDone()
+        {
+            this.isDone = false;
+        }
+
+        /// <summary>
+        /// Gets or sets the path of the profile to run
+        /// </summary>
         [XmlAttribute("path")]
-        public string Path 
+        public string Path
         {
             get
             {
@@ -44,58 +60,21 @@ namespace ZmslBuddy.Profiles.Tags
                 }
 
                 this.path = value;
+
+                // Load the body
+                this.ReloadBody();
             }
         }
 
-        protected override Composite CreateBehavior()
-        {
-            try
-            {
-                var behaviorTree = this.behaviorProvider.GetProfileBehavior(
-                    NeoProfile.Load(path)
-                );
-
-                // Return a sequence of all the behaviors plus the done flag
-                return new Sequence(
-                    new Action(
-                        (r) => Log("In")  
-                    ),
-                    new PrioritySelector(
-                        new Sequence(
-                            behaviorTree.ToArray()
-                        ),
-                        new ActionAlwaysSucceed()
-                    ),
-                    new Action(
-                        (r) => this.isDone = true
-                    )
-                );
-            }
-            catch (AggregateException aggEx)
-            {
-                foreach (var ex in aggEx.InnerExceptions)
-                {
-                    LogError(ex.ToString());
-                }
-
-                return new ActionAlwaysFail();
-            }
-            catch (Exception ex)
-            {
-                LogError(ex.ToString());
-
-                return new ActionAlwaysFail();
-            }
-        }
-
-        protected override void OnResetCachedDone()
-        {
-            this.isDone = false;
-        }
-
+        /// <summary>
+        /// Gets whether the tag is finished or not
+        /// </summary>
         public override bool IsDone
         {
-            get { return this.isDone; }
+            get
+            {
+                return this.isDone;
+            }
         }
     }
 }
