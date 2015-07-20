@@ -11,11 +11,11 @@
   <!ENTITY Item3HqCount "0">
   
   <!-- Iteration settings -->
-  <!ENTITY Total "226">
+  <!ENTITY Total "0">
 ]>
 
 <Profile>
-  <Name>Craft 40 Durability</Name>
+  <Name>Craft - 40 Durability - 334 CP</Name>
   <Order>
     
     <!-- Reset the craft count to 0 for use in the WhileCount loop -->
