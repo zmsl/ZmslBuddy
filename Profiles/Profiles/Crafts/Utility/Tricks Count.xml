@@ -1,16 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <!DOCTYPE Profile [
+  
   <!-- Profile settings -->
   <!ENTITY CraftsUri "Profiles/ZmslBuddy/Crafts">
+  
 ]>
 
+<!-- 
+
+  Profile is used as common logic for the use of Tricks of the Trade
+
+-->
 <Profile>
   <Name>Cast Tricks of the Trade and Count</Name>
   <Order>
+    
+    <!-- Uses ToT and increments the number of ToT charges if the condition is good -->
     <If condition="CraftingManager.Condition == CraftingCondition.Good">
-      <IncrementCount name="TotCount" />
+      
+      <!-- ToT -->
       <RunProfile path="&CraftsUri;/Skills/Tricks Of The Trade.xml" />
+
+      <!-- Increment the number of ToT charges -->
+      <IncrementCount name="TotCount" />
+      
     </If>
+    
   </Order>
 </Profile>
