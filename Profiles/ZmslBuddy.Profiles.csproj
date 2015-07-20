@@ -12,6 +12,9 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <BaseInstallFolder>Client</BaseInstallFolder>
+    <CSharpInstallFolder>Plugins\ZmslBuddy</CSharpInstallFolder>
+    <ProfilesInstallFolder>Profiles\ZmslBuddy</ProfilesInstallFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,49 +87,53 @@
     <Compile Include="Tags\WhileCountTag.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Order\Crafts\Skills\Careful Synthesis II.xml" />
-    <Content Include="Order\Crafts\Skills\Byregot%27s Blessing.xml" />
-    <Content Include="Order\Crafts\Skills\Great Strides.xml" />
-    <Content Include="Order\Crafts\Skills\Innovation.xml" />
-    <Content Include="Order\Crafts\Skills\Ingenuity.xml" />
-    <Content Include="Order\Crafts\Skills\Steady Hand.xml" />
-    <Content Include="Order\Crafts\Skills\Hasty Touch.xml" />
-    <Content Include="Order\Crafts\Skills\Manipulation.xml" />
-    <Content Include="Order\Crafts\Skills\Basic Touch.xml" />
-    <Content Include="Order\Crafts\Skills\Standard Touch.xml" />
-    <Content Include="Order\Crafts\Skills\Precise Touch.xml" />
-    <Content Include="Order\Crafts\Skills\Steady Hand II.xml" />
-    <Content Include="Order\Crafts\Skills\Comfort Zone.xml" />
-    <Content Include="Order\Crafts\Skills\Inner Quiet.xml" />
-    <Content Include="Order\Crafts\Skills\Tricks Of The Trade.xml" />
-    <Content Include="Order\Crafts\Utility\Best Touch Count.xml" />
-    <Content Include="Order\Crafts\Utility\Basic Touch Count.xml" />
-    <Content Include="Order\Crafts\Utility\Tricks Count.xml" />
-    <Content Include="Order\Test Counter.xml">
+    <Content Include="Profiles\Crafts\Skills\Careful Synthesis II.xml" />
+    <Content Include="Profiles\Crafts\Skills\Byregot%27s Blessing.xml" />
+    <Content Include="Profiles\Crafts\Skills\Great Strides.xml" />
+    <Content Include="Profiles\Crafts\Skills\Innovation.xml" />
+    <Content Include="Profiles\Crafts\Skills\Ingenuity.xml" />
+    <Content Include="Profiles\Crafts\Skills\Steady Hand.xml" />
+    <Content Include="Profiles\Crafts\Skills\Hasty Touch.xml" />
+    <Content Include="Profiles\Crafts\Skills\Manipulation.xml" />
+    <Content Include="Profiles\Crafts\Skills\Basic Touch.xml" />
+    <Content Include="Profiles\Crafts\Skills\Standard Touch.xml" />
+    <Content Include="Profiles\Crafts\Skills\Precise Touch.xml" />
+    <Content Include="Profiles\Crafts\Skills\Steady Hand II.xml" />
+    <Content Include="Profiles\Crafts\Skills\Comfort Zone.xml" />
+    <Content Include="Profiles\Crafts\Skills\Inner Quiet.xml" />
+    <Content Include="Profiles\Crafts\Skills\Tricks Of The Trade.xml" />
+    <Content Include="Profiles\Crafts\Utility\Best Touch Count.xml" />
+    <Content Include="Profiles\Crafts\Utility\Basic Touch Count.xml" />
+    <Content Include="Profiles\Crafts\Utility\Tricks Count.xml" />
+    <Content Include="Profiles\Tests\Test Counter.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Order\Crafts\Order - Weaver - Ramie Thread.xml" />
-    <Content Include="Order\Order - Blacksmith - Cobalt Ingot.xml" />
-    <Content Include="Order\Order - Botany - Coerthas Western Highlands - Dragon Obsidian.xml" />
-    <Content Include="Order\Order - Mining - Northern Thanalan - Cobalt Ore.xml">
+    <Content Include="Profiles\Crafts\Order - Weaver - Ramie Thread.xml" />
+    <Content Include="Profiles\Crafts\Order - Blacksmith - Cobalt Ingot.xml" />
+    <Content Include="Profiles\Gather\Order - Botany - Coerthas Western Highlands - Dragon Obsidian.xml" />
+    <Content Include="Profiles\Gather\Order - Mining - Northern Thanalan - Cobalt Ore.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Order\Test Runner.xml" />
+    <Content Include="Profiles\Tests\Test Runner.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Schema\Order.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Behavior\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <CSharpFiles Include="Tags\**\*.*" />
+      <ProfileFiles Include="Profiles\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CSharpFiles)" DestinationFolder="$(TargetDir)\$(BaseInstallFolder)\$(CSharpInstallFolder)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ProfileFiles)" DestinationFolder="$(TargetDir)\$(BaseInstallFolder)\$(ProfilesInstallFolder)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
   </Target>
   -->
 </Project>

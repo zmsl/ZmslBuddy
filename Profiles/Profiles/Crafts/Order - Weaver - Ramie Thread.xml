@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE Profile [
+  <!-- Profile settings -->
+  <!ENTITY CraftsUri "Profiles/ZmslBuddy/Crafts">
+  
+  <!-- Craft settings -->
+  <!ENTITY RecipeId "2757">
+  <!ENTITY Item1HqCount "0">
+  <!ENTITY Item2HqCount "0">
+  <!ENTITY Item3HqCount "0">
+  
+  <!-- Iteration settings -->
+  <!ENTITY Total "226">
+]>
+
+<Profile>
+  <Name>Craft 40 Durability</Name>
+  <Order>
+    
+    <!-- Reset the craft count to 0 for use in the WhileCount loop -->
+    <ResetCount name="CraftCount" />
+    
+    <WhileCount name="CraftCount" value="&Total;" method="LessThan">
+      
+      <!-- Reset the ToT count value -->
+      <ResetCount name="TotCount" />
+      
+      <!-- Begin the synthesis -->
+      <Synthesize recipeId="&RecipeId;" hqMats="&Item1HqCount;,&Item2HqCount;,&Item3HqCount;" />
+      
+      <!-- CZ with an optional ToT execution if available -->
+      <RunProfile path="&CraftsUri;/Skills/Comfort Zone.xml" />
+      <RunProfile path="&CraftsUri;/Utility/Tricks Count.xml" />
+
+      <!-- IQ with an optional ToT execution if available -->
+      <RunProfile path="&CraftsUri;/Skills/Inner Quiet.xml" />
+      <RunProfile path="&CraftsUri;/Utility/Tricks Count.xml" />
+
+      <!-- SHII -->
+      <RunProfile path="&CraftsUri;/Skills/Steady Hand II.xml" />
+      
+      <!-- Manipulation -->
+      <RunProfile path="&CraftsUri;/Skills/Manipulation.xml" />
+
+      <!-- BT 3x, upgrade to PT if we have a ToT count and weather is good -->
+      <RunProfile path="&CraftsUri;/Utility/Basic Touch Count.xml" />
+      <RunProfile path="&CraftsUri;/Utility/Basic Touch Count.xml" />
+      <RunProfile path="&CraftsUri;/Utility/Basic Touch Count.xml" />
+      
+      <!-- BT, upgrade to PT if we have a ToT count and weather is good, 
+            otherwise upgrade to ST -->
+      <RunProfile path="&CraftsUri;/Utility/Best Touch Count.xml" />
+
+      <!-- SH -->
+      <RunProfile path="&CraftsUri;/Skills/Steady Hand.xml" />
+
+      <!-- In -->
+      <RunProfile path="&CraftsUri;/Skills/Innovation.xml" />
+
+      <!-- GS -->
+      <RunProfile path="&CraftsUri;/Skills/Great Strides.xml" />
+
+      <!-- BB -->
+      <RunProfile path="&CraftsUri;/Skills/Byregot's Blessing.xml" />
+
+      <!-- CSII x2 -->
+      <RunProfile path="&CraftsUri;/Skills/Careful Synthesis II.xml" />
+      <RunProfile path="&CraftsUri;/Skills/Careful Synthesis II.xml" />
+      
+      <!-- Increment our craft count for the parent WhileCount tag condition -->
+      <IncrementCount name="CraftCount"/>
+      <LogCount name="CraftCount" />
+      
+    </WhileCount>
+    
+  </Order>
+</Profile>
