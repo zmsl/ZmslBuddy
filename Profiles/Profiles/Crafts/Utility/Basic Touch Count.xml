@@ -1,4 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE Profile [
+  <!-- Profile settings -->
+  <!ENTITY CraftsUri "Profiles/ZmslBuddy/Crafts">
+]>
+
 <Profile>
   <Name>Use Basic Touch with Count</Name>
   <Order>
@@ -9,19 +15,20 @@
     <IfCount name="TotCount" method="GreaterThan" value="0">
 
       <If condition="CraftingManager.Condition == CraftingCondition.Good">
-        <RunProfile path="Profiles/ZmslBuddy/Skills/Precise Touch.xml" />
+        <RunProfile path="&CraftsUri;/Skills/Precise Touch.xml" />
         <IncrementCount name="PtRan" />
         <DecrementCount name="TotCount"/>
       </If>
+      
       <IfCount name="PtRan" method="Equal" value="0">
-        <RunProfile path="Profiles/ZmslBuddy/Skills/Basic Touch.xml"/>
+        <RunProfile path="&CraftsUri;/Skills/Basic Touch.xml"/>
       </IfCount>
 
       <IncrementCount name="TotRan" />
 
     </IfCount>
     <IfCount name="TotRan" method="Equal" value="0">
-      <RunProfile path="Profiles/ZmslBuddy/Skills/Basic Touch.xml"/>
+      <RunProfile path="&CraftsUri;/Skills/Basic Touch.xml"/>
     </IfCount>
 
     <ResetCount name="PtRan" />

@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE Profile [
+  <!-- Profile settings -->
+  <!ENTITY CraftsUri "Profiles/ZmslBuddy/Crafts">
+]>
+
 <Profile>
   <Name>Cast Tricks of the Trade and Count</Name>
   <Order>
     <If condition="CraftingManager.Condition == CraftingCondition.Good">
       <IncrementCount name="TotCount" />
-      <RunProfile path="Profiles/ZmslBuddy/Skills/Tricks Of The Trade.xml" />
+      <RunProfile path="&CraftsUri;/Skills/Tricks Of The Trade.xml" />
     </If>
   </Order>
 </Profile>
