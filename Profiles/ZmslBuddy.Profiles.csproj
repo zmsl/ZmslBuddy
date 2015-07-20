@@ -108,7 +108,7 @@
     <Content Include="Profiles\Tests\Test Counter.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Profiles\Crafts\Order - Weaver - Ramie Thread.xml" />
+    <Content Include="Profiles\Crafts\Order - Generic - 40D334CP.xml" />
     <Content Include="Profiles\Crafts\Order - Blacksmith - Cobalt Ingot.xml" />
     <Content Include="Profiles\Gather\Order - Botany - Coerthas Western Highlands - Dragon Obsidian.xml" />
     <Content Include="Profiles\Gather\Order - Mining - Northern Thanalan - Cobalt Ore.xml">
