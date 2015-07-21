@@ -26,7 +26,7 @@ namespace ZmslBuddy.Profiles.Tags
                     throw new MemberAccessException("Object property Name cannot be accessed when null or empty");
                 }
 
-                return ProfileStateCache<T>.Instance[this.Name];
+                return ObjectCache<T>.Instance[this.Name];
             }
         }
 

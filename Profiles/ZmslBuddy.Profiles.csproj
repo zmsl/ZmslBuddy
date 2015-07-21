@@ -67,11 +67,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tags\Behavior\ActionRunOnce.cs" />
+    <Compile Include="Tags\Entity\CachedProfile.cs" />
     <Compile Include="Tags\Enum\ComparisonMethodEnum.cs" />
     <Compile Include="Tags\Enum\ComparisonModifierEnum.cs" />
     <Compile Include="Tags\Extension\NeoProfileExtension.cs" />
+    <Compile Include="Tags\Utility\FileUtility.cs" />
+    <Compile Include="Tags\Utility\PathUtility.cs" />
     <Compile Include="Tags\Extension\TypeExtensions.cs" />
     <Compile Include="Tags\IfCountTag.cs" />
+    <Compile Include="Tags\Provider\CachedProfileProvider.cs" />
+    <Compile Include="Tags\Provider\IProfileProvider.cs" />
     <Compile Include="Tags\RunProfileTag.cs" />
     <Compile Include="Tags\Provider\IProfileBehaviorProvider.cs" />
     <Compile Include="Tags\Provider\ProfileBehaviorProvider.cs" />

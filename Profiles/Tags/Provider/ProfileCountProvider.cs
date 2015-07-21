@@ -30,7 +30,7 @@ namespace ZmslBuddy.Profiles.Tags.Provider
         }
 
         /// <summary>
-        /// Gets the singleton instance of the <see cref="ProfileStateCache{T}"/> class
+        /// Gets the singleton instance of the <see cref="ObjectCache{T}"/> class
         /// </summary>
         public static ProfileCountProvider Instance
         {
@@ -40,12 +40,12 @@ namespace ZmslBuddy.Profiles.Tags.Provider
 
         public int GetCount(string name)
         {
-            return ProfileStateCache<int>.Instance[name];
+            return ObjectCache<int>.Instance[name];
         }
 
         public void SetCount(string name, int count)
         {
-            ProfileStateCache<int>.Instance[name] = count;
+            ObjectCache<int>.Instance[name] = count;
         }
     }
 }

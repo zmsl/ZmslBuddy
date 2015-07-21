@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace ZmslBuddy.Profiles.Tags
 {
-    public class ProfileStateCache<T>
+    public class ObjectCache<T>
     {
         #region Static members
-        private static readonly Lazy<ProfileStateCache<T>> _Instance = new Lazy<ProfileStateCache<T>>(() => new ProfileStateCache<T>(), true);
+        private static readonly Lazy<ObjectCache<T>> _Instance = new Lazy<ObjectCache<T>>(() => new ObjectCache<T>(), true);
 
         /// <summary>
-        /// Gets the singleton instance of the <see cref="ProfileStateCache{T}"/> class
+        /// Gets the singleton instance of the <see cref="ObjectCache{T}"/> class
         /// </summary>
-        public static ProfileStateCache<T> Instance
+        public static ObjectCache<T> Instance
         {
-            get { return ProfileStateCache<T>._Instance.Value; }
+            get { return ObjectCache<T>._Instance.Value; }
         }
         #endregion
 
