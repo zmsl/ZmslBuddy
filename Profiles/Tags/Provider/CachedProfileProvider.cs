@@ -29,7 +29,7 @@ namespace ZmslBuddy.Profiles.Tags.Provider
                 return existingProfile;
             }
 
-            return ObjectCache<CachedProfile>.Instance[normalizedPath] = new CachedProfile(NeoProfile.Load(path), lastWrite);
+            return ObjectCache<CachedProfile>.Instance[normalizedPath] = new CachedProfile(NeoProfile.Load(normalizedPath), lastWrite);
         }
     }
 }

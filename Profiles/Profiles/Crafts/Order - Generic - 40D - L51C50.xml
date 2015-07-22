@@ -6,7 +6,7 @@
 
   <!-- Buff settings -->
   <!ENTITY FoodId "4716">
-  
+
   <!-- Craft settings -->
   <!ENTITY RecipeId "2757">
   <!ENTITY Item1HqCount "0">
@@ -18,7 +18,7 @@
 ]>
 
 <Profile>
-  <Name>Craft - 40 Durability - 334 CP</Name>
+  <Name>Craft - 40 Durability - Level 51 - Class 50</Name>
   <Order>
     
     <!-- Reset the craft count to 0 for use in the WhileCount loop -->
@@ -28,7 +28,7 @@
       
       <!-- Reset the ToT count value -->
       <ResetCount name="TotCount" />
-
+      
       <!-- Eat food -->
       <If condition="&FoodId; &gt; 0">
         <EatFood itemId="&FoodId;" />
@@ -48,21 +48,29 @@
       <!-- SHII -->
       <RunProfile path="&CraftsUri;/Skills/Steady Hand II.xml" />
       
+      <!-- Waste Not II -->
+      <RunProfile path="&CraftsUri;/Skills/Waste Not II.xml" />
+
+      <!-- HT 4x, upgrade to PT if we have a ToT count and weather is good -->
+      <RunProfile path="&CraftsUri;/Skills/Hasty Touch.xml" />
+      <RunProfile path="&CraftsUri;/Skills/Hasty Touch.xml" />
+      <RunProfile path="&CraftsUri;/Skills/Hasty Touch.xml" />
+      <RunProfile path="&CraftsUri;/Skills/Hasty Touch.xml" />
+
+      <!-- SHII -->
+      <RunProfile path="&CraftsUri;/Skills/Steady Hand II.xml" />
+
+      <!-- HT 1x, upgrade to PT if we have a ToT count and weather is good -->
+      <RunProfile path="&CraftsUri;/Skills/Hasty Touch.xml" />
+      <RunProfile path="&CraftsUri;/Skills/Hasty Touch.xml" />
+      <RunProfile path="&CraftsUri;/Skills/Hasty Touch.xml" />
+
       <!-- Manipulation -->
       <RunProfile path="&CraftsUri;/Skills/Manipulation.xml" />
-
-      <!-- BT 3x, upgrade to PT if we have a ToT count and weather is good -->
-      <RunProfile path="&CraftsUri;/Utility/Basic Touch Count.xml" />
-      <RunProfile path="&CraftsUri;/Utility/Basic Touch Count.xml" />
-      <RunProfile path="&CraftsUri;/Utility/Basic Touch Count.xml" />
       
-      <!-- BT, upgrade to PT if we have a ToT count and weather is good, 
-            otherwise upgrade to ST -->
-      <RunProfile path="&CraftsUri;/Utility/Best Basic Touch Count.xml" />
-
       <!-- SH -->
       <RunProfile path="&CraftsUri;/Skills/Steady Hand.xml" />
-
+      
       <!-- In -->
       <RunProfile path="&CraftsUri;/Skills/Innovation.xml" />
 
@@ -72,7 +80,8 @@
       <!-- BB -->
       <RunProfile path="&CraftsUri;/Skills/Byregot's Blessing.xml" />
 
-      <!-- CSII x2 -->
+      <!-- CSII x3 -->
+      <RunProfile path="&CraftsUri;/Skills/Standard Synthesis.xml" />
       <RunProfile path="&CraftsUri;/Skills/Careful Synthesis II.xml" />
       <RunProfile path="&CraftsUri;/Skills/Careful Synthesis II.xml" />
       

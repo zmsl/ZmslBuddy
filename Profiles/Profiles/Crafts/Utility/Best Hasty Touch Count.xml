@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE Profile [
+  
+  <!-- Profile settings -->
+  <!ENTITY CraftsUri "Profiles/ZmslBuddy/Crafts">
+  
+]>
+
+<!--
+
+  Profile is used as common logic for upgrading Hasty Touch to Precise Touch
+  when the weather is good and there are Tricks of the Trade charges available.
+  
+  If the weather is not good, but there are Tricks of the Trade charges available,
+  Basic Touch will be used.
+
+-->
+<Profile>
+  <Name>Use Hasty Touch with Count</Name>
+  <Order>
+
+    <!-- Reset the PT and ToT execution markers -->
+    <ResetCount name="PtRan" />
+    <ResetCount name="TotRan" />
+
+    <!-- If we have a ToT "charge", use PT if good otherwise use ST -->
+    <IfCount name="TotCount" method="GreaterThan" value="0">
+
+      <!-- Use PT if the condition is good -->
+      <If condition="CraftingManager.Condition == CraftingCondition.Good">
+        
+        <!-- PT -->
+        <RunProfile path="&CraftsUri;/Skills/Precise Touch.xml" />
+        
+        <!-- Mark PT as run for the logic below and "use up" a ToT charge -->
+        <IncrementCount name="PtRan" />
+        
+      </If>
+      
+      <!-- Use BT if PT was not run -->
+      <IfCount name="PtRan" method="GreaterThan" value="0" modifier="Not">
+        <RunProfile path="&CraftsUri;/Skills/Basic Touch.xml" />
+      </IfCount>
+
+      <!-- Mark ToT logic as run so that we don't double cast -->
+      <IncrementCount name="TotRan" />
+      
+      <!-- "Use up" a ToT charge-->
+      <DecrementCount name="TotCount"/>
+
+    </IfCount>
+    
+    <!-- Use HT if PT was not run -->
+    <IfCount name="TotRan" method="Equal" value="0">
+      <RunProfile path="&CraftsUri;/Skills/Hasty Touch.xml"/>
+    </IfCount>
+
+    <!-- Reset the PT and ToT execution markers -->
+    <ResetCount name="PtRan" />
+    <ResetCount name="TotRan" />
+    
+  </Order>
+</Profile>

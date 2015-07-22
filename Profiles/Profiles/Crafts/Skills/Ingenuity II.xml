@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Profile>
-  <Name>Cast Innovation</Name>
+  <Name>Cast Ingenuity II</Name>
   <Order>
-      <CraftAction actionId="284" />
+      <CraftAction actionId="277" />
   </Order>
 </Profile>

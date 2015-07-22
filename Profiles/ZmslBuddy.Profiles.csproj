@@ -71,6 +71,7 @@
     <Compile Include="Tags\Enum\ComparisonMethodEnum.cs" />
     <Compile Include="Tags\Enum\ComparisonModifierEnum.cs" />
     <Compile Include="Tags\Extension\NeoProfileExtension.cs" />
+    <Compile Include="Tags\Provider\RealTimeProfileProvider.cs" />
     <Compile Include="Tags\Utility\FileUtility.cs" />
     <Compile Include="Tags\Utility\PathUtility.cs" />
     <Compile Include="Tags\Extension\TypeExtensions.cs" />
@@ -93,9 +94,12 @@
     <Compile Include="Tags\WhileCountTag.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Profiles\Crafts\Order - Generic - 40D - L51C50.xml" />
+    <Content Include="Profiles\Crafts\Skills\Standard Synthesis.xml" />
     <Content Include="Profiles\Crafts\Skills\Careful Synthesis II.xml" />
     <Content Include="Profiles\Crafts\Skills\Byregot%27s Blessing.xml" />
     <Content Include="Profiles\Crafts\Skills\Great Strides.xml" />
+    <Content Include="Profiles\Crafts\Skills\Ingenuity II.xml" />
     <Content Include="Profiles\Crafts\Skills\Innovation.xml" />
     <Content Include="Profiles\Crafts\Skills\Ingenuity.xml" />
     <Content Include="Profiles\Crafts\Skills\Steady Hand.xml" />
@@ -107,8 +111,11 @@
     <Content Include="Profiles\Crafts\Skills\Steady Hand II.xml" />
     <Content Include="Profiles\Crafts\Skills\Comfort Zone.xml" />
     <Content Include="Profiles\Crafts\Skills\Inner Quiet.xml" />
+    <Content Include="Profiles\Crafts\Skills\Waste Not II.xml" />
     <Content Include="Profiles\Crafts\Skills\Tricks Of The Trade.xml" />
-    <Content Include="Profiles\Crafts\Utility\Best Touch Count.xml" />
+    <Content Include="Profiles\Crafts\Utility\Best Hasty Touch Count.xml" />
+    <Content Include="Profiles\Crafts\Utility\Hasty Touch Count.xml" />
+    <Content Include="Profiles\Crafts\Utility\Best Basic Touch Count.xml" />
     <Content Include="Profiles\Crafts\Utility\Basic Touch Count.xml" />
     <Content Include="Profiles\Crafts\Utility\Tricks Count.xml" />
     <Content Include="Profiles\Tests\Test Counter.xml">

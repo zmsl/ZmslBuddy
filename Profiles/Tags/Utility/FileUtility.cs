@@ -40,7 +40,7 @@ namespace ZmslBuddy.Profiles.Tags.Utility
                 return withRelative;
             }
 
-            return relativeOrAbsolutePath;
+            return Path.GetFullPath(relativeOrAbsolutePath);
         }
     }
 }
