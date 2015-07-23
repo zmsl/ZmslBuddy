@@ -18,7 +18,7 @@ namespace ZmslBuddy.Profiles.Tags
         /// </summary>
         public RunProfileTag()
         {
-            this.profileProvider = new CachedProfileProvider(); // No DI = sadness
+            this.profileProvider = new RealTimeProfileProvider(); // No DI = sadness
             this.Condition = "True"; // Default condition to true so that user does not need to specify
         }
 

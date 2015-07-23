@@ -12,11 +12,11 @@ namespace ZmslBuddy.Profiles.Tags.Provider
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public FlattenedProfile GetProfile(string path)
+        public CachedProfile GetProfile(string path)
         {
             var normalizedPath = PathUtility.NormalizeFilePath(path);
 
-            return new FlattenedProfile(NeoProfile.Load(normalizedPath));
+            return new CachedProfile(NeoProfile.Load(normalizedPath), DateTime.Now);
         }
     }
 }

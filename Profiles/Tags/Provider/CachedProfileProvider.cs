@@ -13,7 +13,7 @@ namespace ZmslBuddy.Profiles.Tags.Provider
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public FlattenedProfile GetProfile(string path)
+        public CachedProfile GetProfile(string path)
         {
             var normalizedPath = PathUtility.NormalizeFilePath(path);
 
