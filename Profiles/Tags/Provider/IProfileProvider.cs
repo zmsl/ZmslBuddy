@@ -5,6 +5,6 @@ namespace ZmslBuddy.Profiles.Tags.Provider
 {
     public interface IProfileProvider
     {
-        CachedProfile GetProfile(string path);
+        FlattenedProfile GetProfile(string path);
     }
 }

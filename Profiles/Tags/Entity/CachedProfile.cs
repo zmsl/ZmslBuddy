@@ -1,11 +1,12 @@
 ﻿using ff14bot.NeoProfiles;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ZmslBuddy.Profiles.Tags.Extension;
 
 namespace ZmslBuddy.Profiles.Tags.Entity
 {
-    public class CachedProfile
+    public class CachedProfile : FlattenedProfile
     {
         /// <summary>
         /// Instantiates a new instance of the <see cref="CachedProfile"/> class
@@ -13,33 +14,9 @@ namespace ZmslBuddy.Profiles.Tags.Entity
         /// <param name="profile"></param>
         /// <param name="updatedOn"></param>
         public CachedProfile(NeoProfile profile, DateTime updatedOn)
+            : base(profile)
         {
-            if (profile == null)
-            {
-                throw new ArgumentNullException("profile");
-            }
-
-            this.Profile = profile;
-            this.Body = profile.GetOrderBody();
             this.UpdatedOn = updatedOn;
-        }
-
-        /// <summary>
-        /// Gets the cached profile object
-        /// </summary>
-        public NeoProfile Profile
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Gets the cached profile body
-        /// </summary>
-        public List<ProfileBehavior> Body
-        {
-            get;
-            private set;
         }
 
         /// <summary>

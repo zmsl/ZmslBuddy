@@ -68,6 +68,10 @@
   <ItemGroup>
     <Compile Include="Tags\Behavior\ActionRunOnce.cs" />
     <Compile Include="Tags\Entity\CachedProfile.cs" />
+    <Compile Include="Tags\Entity\GenericRefreshBehavior.cs" />
+    <Compile Include="Tags\Entity\FlattenedProfile.cs" />
+    <Compile Include="Tags\Entity\ProfileRefreshBehavior.cs" />
+    <Compile Include="Tags\Entity\WhileRefreshBehavior.cs" />
     <Compile Include="Tags\Enum\ComparisonMethodEnum.cs" />
     <Compile Include="Tags\Enum\ComparisonModifierEnum.cs" />
     <Compile Include="Tags\Extension\NeoProfileExtension.cs" />
