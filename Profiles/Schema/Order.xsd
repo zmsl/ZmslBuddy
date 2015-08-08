@@ -527,6 +527,7 @@
   <xs:complexType name="DialogInteraction">
     <xs:complexContent>
       <xs:extension base="Interaction">
+        <xs:attribute name="name" type="xs:string"/>
         <xs:attribute name="dialogOption" type="xs:int"/>
       </xs:extension>
     </xs:complexContent>
