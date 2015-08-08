@@ -6,7 +6,7 @@
         <xs:element name="Name" type="xs:string"/>
         <xs:element minOccurs="0" name="KillRadius" type="xs:float"/>
         <xs:element minOccurs="0" name="BehaviorDirectory" type="xs:string"/>
-        <xs:all maxOccurs="unbounded" minOccurs="0">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
           <xs:element minOccurs="0" name="GrindAreas">
             <xs:complexType>
               <xs:sequence>
@@ -21,8 +21,8 @@
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          <xs:element minOccurs="1" name="Order" type="CompositeProfileBehavior"/>
-        </xs:all>
+        </xs:choice>
+        <xs:element minOccurs="1" name="Order" type="CompositeProfileBehavior"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -401,7 +401,7 @@
     <xs:attribute use="optional" name="radius" type="xs:float"/>
   </xs:complexType>
   <xs:complexType name="CompositeProfileBehavior">
-    <xs:all maxOccurs="unbounded">
+    <xs:choice maxOccurs="unbounded">
       <xs:element ref="WaitWhile"/>
       <xs:element ref="If"/>
       <xs:element ref="While"/>
